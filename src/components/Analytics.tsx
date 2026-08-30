@@ -15,7 +15,6 @@ import {
   CheckIcon,
   UsersIcon,
   WarningIcon,
-  XIcon,
 } from "./Icons";
 
 interface AnalyticsProps {
@@ -399,3 +398,4 @@ export function Analytics({
     </div>
   );
 }
+
