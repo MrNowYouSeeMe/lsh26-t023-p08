@@ -128,3 +128,14 @@ export function ChevronRightIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function BarChartIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M4 20V10" />
+      <path d="M10 20V4" />
+      <path d="M16 20v-7" />
+      <path d="M22 20H2" />
+    </svg>
+  );
+}

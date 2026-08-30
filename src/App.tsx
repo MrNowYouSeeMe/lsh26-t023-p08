@@ -25,9 +25,11 @@ import {
 import { ResultsTable } from "./components/ResultsTable";
 import { StudentTrace } from "./components/StudentTrace";
 import { CheckingCenter } from "./components/CheckingCenter";
+import { Analytics } from "./components/Analytics";
 import { StatCard } from "./components/StatCard";
 
 import {
+  BarChartIcon,
   CheckIcon,
   CheckListIcon,
   DashboardIcon,
@@ -37,7 +39,7 @@ import {
   XIcon,
 } from "./components/Icons";
 
-type View = "dashboard" | "checking";
+type View = "dashboard" | "checking" | "analytics";
 
 const PAGE_SIZE = 12;
 
@@ -342,6 +344,19 @@ function App() {
               <em>{stats.review}</em>
             )}
           </button>
+
+          <button
+            type="button"
+            className={
+              activeView === "analytics"
+                ? "sidebar-link sidebar-link--active"
+                : "sidebar-link"
+            }
+            onClick={() => setActiveView("analytics")}
+          >
+            <BarChartIcon />
+            <span>Analytics</span>
+          </button>
         </nav>
 
         <div className="sidebar-spacer" />
@@ -485,11 +500,13 @@ function App() {
                 onViewTrace={setSelectedResult}
               />
             </>
-          ) : (
+          ) : activeView === "checking" ? (
             <CheckingCenter
               results={results}
               onViewTrace={setSelectedResult}
             />
+          ) : (
+            <Analytics results={results} />
           )}
         </main>
 
@@ -519,6 +536,19 @@ function App() {
             <CheckListIcon />
             Checking
           </button>
+
+          <button
+            type="button"
+            className={
+              activeView === "analytics"
+                ? "mobile-nav__item mobile-nav__item--active"
+                : "mobile-nav__item"
+            }
+            onClick={() => setActiveView("analytics")}
+          >
+            <BarChartIcon />
+            Analytics
+          </button>
         </nav>
       </div>
 
@@ -533,3 +563,4 @@ function App() {
 }
 
 export default App;
+
