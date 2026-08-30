@@ -139,3 +139,13 @@ export function BarChartIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function UploadIcon(props: IconProps) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 16V4" />
+      <path d="m7 9 5-5 5 5" />
+      <path d="M5 14H3v6h18v-6h-2" />
+    </svg>
+  );
+}

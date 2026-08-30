@@ -26,10 +26,12 @@ import { ResultsTable } from "./components/ResultsTable";
 import { StudentTrace } from "./components/StudentTrace";
 import { CheckingCenter } from "./components/CheckingCenter";
 import { Analytics } from "./components/Analytics";
+import { ImportMarks } from "./components/ImportMarks";
 import { StatCard } from "./components/StatCard";
 
 import {
   BarChartIcon,
+  UploadIcon,
   CheckIcon,
   CheckListIcon,
   DashboardIcon,
@@ -39,7 +41,7 @@ import {
   XIcon,
 } from "./components/Icons";
 
-type View = "dashboard" | "checking" | "analytics";
+type View = "dashboard" | "checking" | "analytics" | "import";
 
 const PAGE_SIZE = 12;
 
@@ -357,6 +359,19 @@ function App() {
             <BarChartIcon />
             <span>Analytics</span>
           </button>
+
+          <button
+            type="button"
+            className={
+              activeView === "import"
+                ? "sidebar-link sidebar-link--active"
+                : "sidebar-link"
+            }
+            onClick={() => setActiveView("import")}
+          >
+            <UploadIcon />
+            <span>Import Marks</span>
+          </button>
         </nav>
 
         <div className="sidebar-spacer" />
@@ -505,8 +520,10 @@ function App() {
               results={results}
               onViewTrace={setSelectedResult}
             />
-          ) : (
+          ) : activeView === "analytics" ? (
             <Analytics results={results} />
+          ) : (
+            <ImportMarks results={results} />
           )}
         </main>
 
@@ -549,6 +566,19 @@ function App() {
             <BarChartIcon />
             Analytics
           </button>
+
+          <button
+            type="button"
+            className={
+              activeView === "import"
+                ? "mobile-nav__item mobile-nav__item--active"
+                : "mobile-nav__item"
+            }
+            onClick={() => setActiveView("import")}
+          >
+            <UploadIcon />
+            Import
+          </button>
         </nav>
       </div>
 
@@ -563,4 +593,5 @@ function App() {
 }
 
 export default App;
+
 
