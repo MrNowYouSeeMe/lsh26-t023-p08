@@ -4,6 +4,7 @@ import type {
   SubjectEvaluation,
 } from "../types/models";
 import { Badge } from "./Badge";
+import { PrintableMarksheet } from "./PrintableMarksheet";
 import {
   InfoIcon,
   WarningIcon,
@@ -101,14 +102,24 @@ export function StudentTrace({
             </div>
           </div>
 
-          <button
-            type="button"
-            className="icon-button"
-            onClick={onClose}
-            aria-label="Close calculation trace"
-          >
-            <XIcon />
-          </button>
+          <div className="trace-header__actions">
+            <button
+              type="button"
+              className="button button--primary print-button"
+              onClick={() => window.print()}
+            >
+              Print Marksheet
+            </button>
+
+            <button
+              type="button"
+              className="icon-button"
+              onClick={onClose}
+              aria-label="Close calculation trace"
+            >
+              <XIcon />
+            </button>
+          </div>
         </header>
 
         <div className="trace-body">
@@ -355,7 +366,10 @@ export function StudentTrace({
             </section>
           </div>
         </div>
+
+        <PrintableMarksheet result={result} />
       </section>
     </div>
   );
 }
+
