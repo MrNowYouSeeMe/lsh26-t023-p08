@@ -1,11 +1,11 @@
-﻿# ResultGuard
+# ResultGuard
 
-**Rule-accurate school result processing, GPA calculation, explainability, and pre-publication validation for LofiStack Hackathon 2026 — P08.**
+**Rule-accurate school result processing, GPA calculation, explainability, and pre-publication validation for LofiStack Hackathon 2026 â€” P08.**
 
 | Project Metadata | Value |
 |---|---|
 | Team | `LSH26-T023` |
-| Problem | `P08 — School Result Processing and GPA Engine` |
+| Problem | `P08 â€” School Result Processing and GPA Engine` |
 | Product | `ResultGuard` |
 | Application Type | Client-side React + TypeScript web application |
 | Evaluation Dataset | Official organizer-provided P08 public fixture |
@@ -61,15 +61,15 @@ ResultGuard makes those rules explicit, testable, and visible to the user before
 
 | Mark | Grade Point |
 |---:|---:|
-| 80–100 | 5.0 |
-| 70–79 | 4.0 |
-| 60–69 | 3.5 |
-| 50–59 | 3.0 |
-| 40–49 | 2.0 |
-| 33–39 | 1.0 |
+| 80â€“100 | 5.0 |
+| 70â€“79 | 4.0 |
+| 60â€“69 | 3.5 |
+| 50â€“59 | 3.0 |
+| 40â€“49 | 2.0 |
+| 33â€“39 | 1.0 |
 | Below 33 | 0.0 |
 
-The normal-subject mark must be within 0–100.
+The normal-subject mark must be within 0â€“100.
 
 ### Theory / Practical Subjects
 
@@ -115,7 +115,7 @@ The result is capped at 5.00 and displayed to two decimal places.
 Any failed compulsory subject overrides the otherwise calculated GPA.
 
     any compulsory failure
-            ↓
+            â†“
     Final GPA = 0.00
     Letter Grade = F
 
@@ -126,11 +126,11 @@ The trace still preserves and displays the calculated GPA before that failure ov
 | Final GPA | Letter |
 |---:|---|
 | 5.00 | A+ |
-| 4.00–4.99 | A |
-| 3.50–3.99 | A- |
-| 3.00–3.49 | B |
-| 2.00–2.99 | C |
-| 1.00–1.99 | D |
+| 4.00â€“4.99 | A |
+| 3.50â€“3.99 | A- |
+| 3.00â€“3.49 | B |
+| 2.00â€“2.99 | C |
+| 1.00â€“1.99 | D |
 | Compulsory failure / below 1.00 | F |
 
 ---
@@ -190,9 +190,9 @@ Expected identity fields support common aliases for student ID/roll, name, class
 
 | Data | Accepted |
 |---|---|
-| Normal subject | `0–100` or `AB` |
-| Theory component | `0–75` or `AB` |
-| Practical component | `0–25` or `AB` |
+| Normal subject | `0â€“100` or `AB` |
+| Theory component | `0â€“75` or `AB` |
+| Practical component | `0â€“25` or `AB` |
 | Required student identity fields | Must be present |
 | Student ID | Must not be duplicated within the imported table |
 | Optional subject | Must exist and must not also be compulsory |
@@ -229,12 +229,12 @@ The bundled evaluation fixture reports:
 | Problem ID | P08 |
 | Public cases | 25 |
 | Student records across all cases | 1,765 |
-| Records per case | 60–80 |
+| Records per case | 60â€“80 |
 | Classes | Class 9 and Class 10 |
 | Subject definitions per case | 9 |
 | Compulsory subjects per case | 6 |
 
-The word “records” is intentional: the 1,765 value is the sum of student records across the 25 public cases and is not presented as 1,765 unique real-world students.
+The word â€œrecordsâ€ is intentional: the 1,765 value is the sum of student records across the 25 public cases and is not presented as 1,765 unique real-world students.
 
 The fixture is bundled with the deployed application and is loaded from the same origin. No external runtime data API is required.
 
@@ -250,30 +250,30 @@ The result engine is the single source of truth for GPA-related decisions. UI co
 flowchart TB
 
     subgraph DATA["1. Data Sources"]
-        FIXTURE["Official P08 Public Fixture<br/>25 Cases • Class 9 & 10"]
-        IMPORT["Teacher Marks Input<br/>CSV • TXT • Spreadsheet Paste"]
+        FIXTURE["Official P08 Public Fixture<br/>25 Cases â€¢ Class 9 & 10"]
+        IMPORT["Teacher Marks Input<br/>CSV â€¢ TXT â€¢ Spreadsheet Paste"]
     end
 
     subgraph INPUT["2. Input & Validation Layer"]
         LOADER["Fixture Loader<br/>Bundled Same-Origin JSON"]
         PARSER["Import Parser<br/>CSV / Tab Detection<br/>Header Normalization"]
-        VALIDATOR["Import Validator<br/>Schema • Range • AB • Duplicate ID"]
+        VALIDATOR["Import Validator<br/>Schema â€¢ Range â€¢ AB â€¢ Duplicate ID"]
         ACCEPTED["Accepted Rows<br/>Validation Preview"]
-        REJECTED["Rejected Row Report<br/>Row • Field • Value • Reason"]
+        REJECTED["Rejected Row Report<br/>Row â€¢ Field â€¢ Value â€¢ Reason"]
     end
 
     subgraph DOMAIN["3. Domain / Result Engine"]
         GRADE["grade.ts<br/>Grade Point + Letter Grade"]
-        SUBJECT["subjectResult.ts<br/>Normal • Practical • AB Evaluation"]
-        STUDENT["studentResult.ts<br/>Optional Bonus • GPA • Cap<br/>Compulsory-Failure Override"]
-        CHECKS["checkingLists.ts<br/>Optional Review • Practical Fail • Absent"]
-        ANALYTICS["analytics.ts<br/>Pass Rate • Grade Distribution<br/>Subject Failure Analysis"]
+        SUBJECT["subjectResult.ts<br/>Normal â€¢ Practical â€¢ AB Evaluation"]
+        STUDENT["studentResult.ts<br/>Optional Bonus â€¢ GPA â€¢ Cap<br/>Compulsory-Failure Override"]
+        CHECKS["checkingLists.ts<br/>Optional Review â€¢ Practical Fail â€¢ Absent"]
+        ANALYTICS["analytics.ts<br/>Pass Rate â€¢ Grade Distribution<br/>Subject Failure Analysis"]
     end
 
     subgraph APP["4. React Application Layer"]
-        STATE["App.tsx<br/>Case Selection • State • Navigation"]
+        STATE["App.tsx<br/>Case Selection â€¢ State â€¢ Navigation"]
 
-        DASH["Results Dashboard<br/>Search • Filters • Pagination"]
+        DASH["Results Dashboard<br/>Search â€¢ Filters â€¢ Pagination"]
         TRACE["Student Calculation Trace<br/>Explainable GPA Breakdown"]
         CHECKUI["Checking Center<br/>Pre-publication Review"]
         ANALYTICSUI["Analytics Dashboard<br/>Class Performance"]
@@ -350,7 +350,7 @@ flowchart TB
 
 The primary evaluation path is:
 
-`Official Fixture → App State → Subject Evaluation → Student Result → Dashboard / Trace / Checking Center / Analytics`
+`Official Fixture â†’ App State â†’ Subject Evaluation â†’ Student Result â†’ Dashboard / Trace / Checking Center / Analytics`
 
 For each student, `studentResult.ts` delegates subject-level decisions to `subjectResult.ts`, which in turn uses the grade-boundary functions in `grade.ts`.
 
@@ -360,7 +360,7 @@ This keeps academic policy out of presentation components and makes the result r
 
 The import bonus follows a deliberately separate path:
 
-`CSV / Spreadsheet Paste → Parser → Validator → Accepted Preview / Rejected Row Report`
+`CSV / Spreadsheet Paste â†’ Parser â†’ Validator â†’ Accepted Preview / Rejected Row Report`
 
 The parser handles comma-separated and tab-separated tables and normalizes headers.
 
@@ -403,7 +403,7 @@ flowchart LR
 
     ENGINE["Client-Side<br/>Result Engine"]
 
-    VIEW["Dashboard • Trace • Checking<br/>Analytics • Import • Print"]
+    VIEW["Dashboard â€¢ Trace â€¢ Checking<br/>Analytics â€¢ Import â€¢ Print"]
 
 
     USER --> HOST
@@ -661,3 +661,43 @@ Repository history is preserved as required for the hackathon.
 
 See [`FRONTEND_GUIDE.md`](FRONTEND_GUIDE.md) for the architecture boundary between domain logic and presentation, safe visual-upgrade areas, current component map, and print/responsive guidance.
 
+
+<!-- LSH26-SUBMISSION-METADATA-START -->
+
+## Submission & Team Contribution Record
+
+### Submission Links
+
+| Item | Link |
+|---|---|
+| Team | `LSH26-T023` |
+| Problem | `P08 â€” School Result Processing and GPA Engine` |
+| P08 Product | `ResultGuard` |
+| P08 Live Application | https://magical-cucurucho-c0dfe3.netlify.app/ |
+| Companion Team Problem | `P06 â€” Client Reporting Digest` |
+| P06 Live Application | https://storied-malabi-cb55e5.netlify.app/ |
+
+### Problem-Solving Method
+
+The team divided ownership across the two selected hackathon problems and worked on them in parallel. For P08, the implementation was approached from the domain rules outward: first encoding the grading, practical-component, absence, optional-subject, compulsory-failure, and GPA rules as deterministic TypeScript logic; then validating those rules with automated tests; and finally building the ResultGuard interface around explainability, pre-publication checking, analytics, import validation, and printable result views. The final release was verified through automated tests, linting, a production build, documentation review, and live deployment checks.
+
+### Registered Member Contributions
+
+- **Shah Ahnaful Islam (`MrNowYouSeeMe`)** â€” Team lead and primary P08 owner. Led the ResultGuard solution including result/GPA rule implementation, core integration, testing, explainability workflow, checking tools, documentation, release preparation, deployment, and final quality verification.
+- **Jamius Siddiqui (`jami-008`)** â€” Contributed to P08 planning and frontend development, including application structure, UI implementation, interface support, and frontend refinement.
+- **Arijit Paul** â€” Primary P06 contributor; led end-to-end architecture, report calculation engine, feature implementation, and cross-client comparison chart visualization.
+- **Al Fardin** â€” Primary P06 contributor; handled codebase debugging, test-case verification, calculation edge-case QA, and live deployment validation.
+
+> The contribution record intentionally distinguishes work performed on P08 from work performed on the team's companion P06 solution.
+
+<!-- LSH26-SUBMISSION-METADATA-END -->
+
+### Production Deployment Note
+
+The final P08 production deployment is hosted on Netlify at:
+
+https://magical-cucurucho-c0dfe3.netlify.app/
+
+The companion P06 application is available at:
+
+https://storied-malabi-cb55e5.netlify.app/
